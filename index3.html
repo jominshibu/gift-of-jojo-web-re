@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gift Of JoJo Live Media</title>
+  <link rel="icon" type="image/x-icon" href="img/RoundPhoto_Nov302020_132604.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://apis.google.com/js/api.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+    header {
+     padding: 1rem 0;
+     position: fixed;
+      top: 0;
+      left: 0;
+     z-index: 6;
+     width: 100%;
+     height: 100;
+     transition: all 0.3s ease-in-out;
+     backdrop-filter: blur(5px) saturate(100%);
+     background: rgba(0, 0, 0, 0.5);
+    }
+
+   
+    .navbar {
+     display: flex;
+      justify-content: space-between;
+     align-items: center;
+   }
+
+   .navbar ul {
+     list-style-type: none;
+     display: flex;
+   }
+
+    .navbar ul li {
+       margin: 0 0.9rem;
+      position: relative;
+    }
+
+   .navbar ul li a {
+      color: var(--white-color);
+     font-size: 1.1rem;
+    }
+
+   .navbar ul li::before {
+      content: "";
+     position: absolute;
+     top: 30px;
+     left: 0;
+     width: 0;
+      height: 3px;
+     background: var(--white-color);
+    opacity: 0;
+     transition: all 0.3s ease-in;
+    }
+
+    .navbar ul li:hover::before {
+      opacity: 1;
+      width: 100%;
+    }
+    .btn {
+       font-size: 1.3rem;
+      color: var(--white-color);
+      cursor: pointer;
+       display: none;
+    }
+
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 60px;
+      margin-right: 15px;
+    }
+    .logo h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #fff;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #f00;
+    }
+    .hero {
+      background: url('https://images.unsplash.com/photo-1518972559570-7cc1309f3229?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .hero h2 {
+      font-size: 48px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .hero p {
+      font-size: 20px;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+    .hero button, .subscribe-button {
+      background-color: #e60000;
+      border: none;
+      padding: 15px 30px;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      margin: 10px;
+    }
+    .hero button:hover, .subscribe-button:hover {
+      background-color: #b30000;
+    }
+
+    .stream-section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .stream-carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 20px 0;
+      scroll-behavior: smooth;
+    }
+
+    .stream-carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .stream-item {
+      min-width: 400px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stream-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+    }
+      .stream-section, .events-section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .stream-item iframe {
+      width: 100%;
+      height: 225px;
+      border: none;
+      border-radius: 10px;
+    }
+    .events-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .events-section li {
+      background-color: #1a1a1a;
+      margin: 10px auto;
+      padding: 15px;
+      border-radius: 8px;
+      max-width: 600px;
+      text-align: left;
+    }
+    .contact-form {
+      padding: 40px 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .contact-form h3 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .contact-details {
+      background-color: #1a1a1a;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .contact-details a {
+      color: #f00;
+      text-decoration: none;
+    }
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .contact-form button {
+      background-color: #e60000;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .social-links {
+      text-align: center;
+      margin: 40px 0;
+    }
+    .social-links a {
+      margin: 0 15px;
+      color: #fff;
+      font-size: 24px;
+      text-decoration: none;
+    }
+    .social-links a:hover {
+      color: #f00;
+    }
+    footer {
+      background-color: #111;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="img/Gift Of JoJo LOGO.png" alt="Gift Of JoJo Logo" />
+      <h1>Gift Of JoJo Live Media</h1>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#live-stream">Live</a>
+      <a href="#events">Events</a>
+      <a href="#contact">Contact</a>
+      <a href="https://youtube.com/@giftofjojo?si=Wqo1wgBydssUyTsc" target="_blank">Channel</a>
+      <div class="btn">
+        <i class="fas fa-bars menu-btn"></i>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <h2>Welcome to Gift Of JoJo Live Media</h2>
+    <p>Experience seamless, high-quality live streaming for events, concerts, and more. Let your message be heard worldwide.</p>
+    <a href="https://youtube.com/@giftofjojo?si=Wqo1wgBydssUyTsc" target="_blank">
+      <button class="subscribe-button">Subscribe on YouTube</button>
+    </a>
+  </section>
+
+  <section class="stream-section" id="live-stream">
+    <h2>Watch Our Streams</h2>
+    <div class="stream-carousel">
+      <div class="stream-item">
+        <iframe src="https://www.youtube.com/embed/WOKQpJi7gHM?start=3980" allowfullscreen></iframe>
+      </div>
+      <div class="stream-item">
+        <iframe src="https://www.youtube.com/embed/HmNSV5n5wk8?si=5MohlwOi1gqbjESy" allowfullscreen></iframe>
+      </div>
+      <div class="stream-item">
+        <iframe src="https://www.youtube.com/embed/RHlwSOZXumo?si=yMURmXQSWZaTsSVU" allowfullscreen></iframe>
+      </div>
+      <div class="stream-item">
+        <iframe src="https://www.youtube.com/embed/3feTpR1SPlk?si=2qVl1lwkMSMYaIvr" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+<br>
+  <section class="events-section" id="events">
+    <h2>Upcoming Live Events</h2>
+    <ul>
+      <li><strong>Loading Upcoming Stream</strong> – Date | Time (Live on YouTube)</li>
+      <li><strong>Loading Upcoming Stream</strong> – Date | Time</li>
+      <li><strong>Loading Upcoming Stream</strong> – Date | Time</li>
+    </ul>
+  </section>
+
+  <section class="stream-section" id="releases">
+    <h2>Watch Our Releases</h2>
+    <div class="stream-carousel">
+      <div class="stream-item">
+        <iframe src="https://www.youtube.com/embed/ZZnffqlPy8A?si=SG3cXAxXyRP3Xopf" allowfullscreen></iframe>
+      </div>
+      <div class="stream-item">
+        <iframe src="https://www.youtube.com/embed/b2qQBVEtZRE?si=14QpQ4ouJhYGdlEy" allowfullscreen></iframe>
+      </div>
+      <div class="stream-item">
+        <iframe src="https://www.youtube.com/embed/ZZ9z-QYuYyQ?si=6wi7_Ik_bCIS0BLr" allowfullscreen></iframe>
+      </div>
+      <div class="stream-item">
+        <iframe src="https://www.youtube.com/embed/76ZawGlp72o?si=vwSpLm_Q25ctQRh8" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-form" id="contact">
+    <h3>Contact Us</h3>
+    <div class="contact-details">
+      <p><strong>Email:</strong> <a href="mailto:giftofjojo@gmail.com">giftofjojo@gmail.com</a></p>
+      <p><strong>Phone (India):</strong> <a href="tel:+919446918214">+91 9446918214</a></p>
+      <p><strong>Phone (UK):</strong> <a href="tel:+447407105919">+44 7407105919</a></p>
+      <p><strong>Phone (UAE):</strong> <a href="tel:+971 56 989 4227">+971 56 989 4227</a></p>
+    </div>
+    <form action="https://formspree.io/f/mldbbwbv" method="POST">
+      <label for="name">Your Name:</label>
+      <input type="text" name="name" id="name" placeholder="Your Name" required />
+
+      <label for="email">Your Email:</label>
+      <input type="email" name="email" id="email" placeholder="Your Email" required />
+
+      <label for="message">Your Message:</label>
+      <textarea name="message" id="message" rows="5" placeholder="Your Message" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <div class="social-links">
+    <a href="https://youtube.com/@giftofjojo" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+  </div>
+
+  <footer>
+    &copy; 2025 Gift Of JoJo Live Media. All rights reserved.
+  </footer>
+
+  <script>
+    const calendarId = 'YOUR_CALENDAR_ID';
+    const apiKey = 'YOUR_API_KEY';
+    const maxResults = 5;
+    const url = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events?orderBy=startTime&singleEvents=true&timeMin=${new Date().toISOString()}&maxResults=${maxResults}&key=${apiKey}`;
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('calendar-events');
+        if (data.items && data.items.length > 0) {
+          container.innerHTML = '<ul>' + data.items.map(event => {
+            const date = new Date(event.start.dateTime || event.start.date);
+            return `<li><strong>${event.summary}</strong> – ${date.toLocaleString()}</li>`;
+          }).join('') + '</ul>';
+        } else {
+          container.innerHTML = '<p>No upcoming events found.</p>';
+        }
+      })
+      .catch(error => {
+        document.getElementById('calendar-events').innerHTML = '<p>Unable to load events.</p>';
+        console.error('Error loading events:', error);
+      });
+  </script>
+</body>
+</html>
